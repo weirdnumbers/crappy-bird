@@ -4,7 +4,12 @@
 
 Wall::Wall()
 {
-    gapHeight = 80;
+    gapHeight = 120;
+}
+
+Wall::~Wall()
+{
+
 }
 
 void Wall::draw(sf::RenderTarget& target, sf::RenderStates states) const

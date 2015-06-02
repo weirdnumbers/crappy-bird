@@ -12,6 +12,7 @@ Game::Game()
     jumpVelocity = - 300;
     gravity = 700;
     birdVelocity = 0.f;
+    wallWidth = 300;
 }
 
 void Game::run()

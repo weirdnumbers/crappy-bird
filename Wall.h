@@ -8,6 +8,7 @@ class Wall : public sf::Drawable, public sf::Transformable
 {
     public:
         Wall();
+        ~Wall();
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     private:
         sf::RectangleShape wallLower;

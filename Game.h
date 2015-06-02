@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Bird.h"
+#include "Wall.h"
 
 class Game
 {
@@ -18,7 +19,9 @@ class Game
 
         sf::RenderWindow mWindow;
         Bird mBird;
+        std::vector<Wall> walls;
 
+        int wallWidth;
         int jumpVelocity;
         int gravity;
         float birdVelocity;
