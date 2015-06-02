@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Wall.h"
 #include "Screen.h"
 #include <iostream>
 #include <SFML/Window/Event.hpp>
@@ -9,10 +10,10 @@ Game::Game()
     : mWindow(sf::VideoMode(Screen::Width, Screen::Height), "Crappy Bird", sf::Style::Close)
 {
     mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
+    wallDistance = 300;
     jumpVelocity = - 300;
     gravity = 700;
     birdVelocity = 0.f;
-    wallWidth = 300;
 }
 
 void Game::run()
