@@ -2,6 +2,7 @@
 #include "Wall.h"
 #include "Screen.h"
 #include <iostream>
+#include <vector>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/System/Time.hpp>
@@ -11,9 +12,12 @@ Game::Game()
 {
     mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
     wallDistance = 300;
-    jumpVelocity = - 300;
-    gravity = 700;
+    jumpVelocity = - 250;
+    gravity = 1000;
     birdVelocity = 0.f;
+    wallSpeed = - 200;
+    Wall wall;
+    walls.push_back(wall);
 }
 
 void Game::run()
@@ -66,11 +70,22 @@ void Game::update(sf::Time elapsedTime)
 {
     float timedelta = elapsedTime.asSeconds();
     moveBird(timedelta);
+
+    for(std::vector<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
+    {
+        (*it).move(sf::Vector2f(timedelta * wallSpeed, 0));
+    }
 }
 
 void Game::render()
 {
     mWindow.clear();
+
+    for(std::vector<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
+    {
+        mWindow.draw(*it);
+    }
+
     mWindow.draw(mBird);
     mWindow.display();
 }

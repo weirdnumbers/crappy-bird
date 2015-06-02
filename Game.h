@@ -21,6 +21,7 @@ class Game
         Bird mBird;
         std::vector<Wall> walls;
 
+        int wallSpeed;
         int wallDistance;
         int jumpVelocity;
         int gravity;
