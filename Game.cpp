@@ -11,13 +11,15 @@ Game::Game()
     : mWindow(sf::VideoMode(Screen::Width, Screen::Height), "Crappy Bird", sf::Style::Close)
 {
     mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
-    wallDistance = 300;
+    wallDistance = 500;
     jumpVelocity = - 250;
     gravity = 1000;
     birdVelocity = 0.f;
     wallSpeed = - 200;
-    Wall wall;
-    walls.push_back(wall);
+
+    Wall firstWall;
+    firstWall.setPosition(Screen::Width, 0);
+    walls.push_back(firstWall);
 }
 
 void Game::run()
@@ -74,6 +76,17 @@ void Game::update(sf::Time elapsedTime)
     for(std::vector<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
     {
         (*it).move(sf::Vector2f(timedelta * wallSpeed, 0));
+        if(it == --walls.end())
+        {
+            int distance = Screen::Width - (*it).getPosition().x;
+            if(distance >= wallDistance)
+            {
+                Wall wall;
+                wall.setPosition(Screen::Width, 0);
+                walls.push_back(wall);
+                break;
+            }
+        }
     }
 }
 
