@@ -26,6 +26,8 @@ class Game
         int jumpVelocity;
         int gravity;
         float birdVelocity;
+        bool wasPressed;
+        bool isPressed;
 };
 
 #endif // GAME_H

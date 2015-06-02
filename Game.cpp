@@ -16,6 +16,8 @@ Game::Game()
     gravity = 1000;
     birdVelocity = 0.f;
     wallSpeed = - 200;
+    wasPressed = false;
+    isPressed = false;
 
     Wall firstWall;
     firstWall.setPosition(Screen::Width, 0);
@@ -47,9 +49,16 @@ void Game::moveBird(float timedelta)
 
 void Game::handleInput()
 {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    isPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+
+    if(isPressed && !wasPressed)
     {
         birdVelocity = jumpVelocity;
+        wasPressed = true;
+    }
+    else if(!isPressed && wasPressed)
+    {
+        wasPressed = false;
     }
 }
 
