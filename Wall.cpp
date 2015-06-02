@@ -24,3 +24,8 @@ void Wall::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(wallLower, states);
     target.draw(wallUpper, states);
 }
+
+int Wall::getWidth()
+{
+    return wallWidth;
+}

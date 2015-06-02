@@ -12,6 +12,7 @@ class Game
         void run();
     private:
         void moveBird(float timedelta);
+        void moveWalls(float timedelta);
         void handleInput();
         void processEvents();
         void update(sf::Time elapsedTime);
