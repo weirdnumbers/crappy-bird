@@ -10,11 +10,11 @@ Game::Game()
     : mWindow(sf::VideoMode(Screen::Width, Screen::Height), "Crappy Bird", sf::Style::Close)
 {
     mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
-    wallDistance = 400;
-    jumpVelocity = - 350;
-    gravity = 1000;
+    wallDistance = 200;
+    jumpVelocity = - 500;
+    gravity = 1800;
     birdVelocity = 0.f;
-    wallSpeed = - 200;
+    wallSpeed = - 180;
     wasPressed = false;
     isPressed = false;
 
@@ -59,6 +59,16 @@ void Game::handleInput()
     {
         wasPressed = false;
     }
+}
+
+void Game::handleCollisions()
+{
+
+}
+
+void Game::checkBirdBounds()
+{
+
 }
 
 void Game::processEvents()
@@ -108,6 +118,7 @@ void Game::update(sf::Time elapsedTime)
 
     moveBird(timedelta);
     moveWalls(timedelta);
+    handleCollisions();
 }
 
 void Game::render()

@@ -15,6 +15,8 @@ class Game
         void moveBird(float timedelta);
         void moveWalls(float timedelta);
         void handleInput();
+        void handleCollisions();
+        void checkBirdBounds();
         void processEvents();
         void update(sf::Time elapsedTime);
         void render();
@@ -22,7 +24,6 @@ class Game
         sf::RenderWindow mWindow;
         Bird mBird;
         std::deque<Wall> walls;
-        //std::deque<Wall> walls;
 
         int wallSpeed;
         int wallDistance;

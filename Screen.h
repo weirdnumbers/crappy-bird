@@ -5,8 +5,8 @@ namespace Screen
 {
     enum Size
     {
-        Width = 800,
-        Height = 400,
+        Width = 450,
+        Height = 550,
     };
 }
 
