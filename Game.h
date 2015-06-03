@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <deque>
 #include "Bird.h"
 #include "Wall.h"
 
@@ -20,7 +21,8 @@ class Game
 
         sf::RenderWindow mWindow;
         Bird mBird;
-        std::vector<Wall> walls;
+        std::deque<Wall> walls;
+        //std::deque<Wall> walls;
 
         int wallSpeed;
         int wallDistance;

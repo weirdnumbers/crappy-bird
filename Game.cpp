@@ -2,7 +2,6 @@
 #include "Wall.h"
 #include "Screen.h"
 #include <iostream>
-#include <vector>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/System/Time.hpp>
@@ -79,7 +78,7 @@ void Game::processEvents()
 
 void Game::moveWalls(float timedelta)
 {
-    for(std::vector<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
+    for(std::deque<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
     {
         int distance = Screen::Width - (*it).getPosition().x - (*it).getWidth();
 
@@ -98,7 +97,7 @@ void Game::moveWalls(float timedelta)
 
         if(distance >= Screen::Width)
         {
-            walls.erase(it);
+            walls.pop_front();
         }
     }
 }
@@ -115,7 +114,7 @@ void Game::render()
 {
     mWindow.clear();
 
-    for(std::vector<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
+    for(std::deque<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
     {
         mWindow.draw(*it);
     }
