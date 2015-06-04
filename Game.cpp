@@ -10,9 +10,9 @@ Game::Game()
     : mWindow(sf::VideoMode(Screen::Width, Screen::Height), "Crappy Bird", sf::Style::Close)
 {
     mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
-    wallDistance = 200;
-    jumpVelocity = - 500;
-    gravity = 1800;
+    wallDistance = 220;
+    jumpVelocity = - 550;
+    gravity = 2000;
     birdVelocity = 0.f;
     wallSpeed = - 180;
     wasPressed = false;
@@ -90,9 +90,9 @@ void Game::moveWalls(float timedelta)
 {
     for(std::deque<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
     {
-        int distance = Screen::Width - (*it).getPosition().x - (*it).getWidth();
-
         (*it).move(sf::Vector2f(timedelta * wallSpeed, 0));
+
+        int distance = Screen::Width - (*it).getPosition().x - (*it).getWidth();
 
         if(it == --walls.end())
         {

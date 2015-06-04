@@ -18,3 +18,9 @@ sf::Vector2f Bird::getSize()
 {
     return mShape.getSize();
 }
+
+sf::IntRect Bird::getIntRect()
+{
+    return sf::IntRect(mShape.getPosition().x, mShape.getPosition().y,
+            mShape.getSize().x, mShape.getSize().y);
+}

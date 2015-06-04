@@ -29,3 +29,15 @@ int Wall::getWidth()
 {
     return wallWidth;
 }
+
+sf::IntRect Wall::getLowerIntRect()
+{
+    return sf::IntRect(wallLower.getPosition().x, wallLower.getPosition().y,
+            wallLower.getSize().x, wallLower.getSize().y);
+}
+
+sf::IntRect Wall::getUpperIntRect()
+{
+    return sf::IntRect(wallUpper.getPosition().x, wallUpper.getPosition().y,
+            wallUpper.getSize().x, wallUpper.getSize().y);
+}
