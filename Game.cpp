@@ -37,7 +37,7 @@ void Game::run()
 
 void Game::restart()
 {
-    mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
+    mBird.setPosition(0.2 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
     walls.clear();
     Wall firstWall;
     firstWall.setPosition(Screen::Width, 0);
