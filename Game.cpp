@@ -17,10 +17,7 @@ Game::Game()
     wasPressed = false;
     isPressed = false;
 
-    mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
-    Wall firstWall;
-    firstWall.setPosition(Screen::Width, 0);
-    walls.push_back(firstWall);
+    restart();
 }
 
 void Game::run()
@@ -36,6 +33,15 @@ void Game::run()
         update(elapsedTime);
         render();
     }
+}
+
+void Game::restart()
+{
+    mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
+    walls.clear();
+    Wall firstWall;
+    firstWall.setPosition(Screen::Width, 0);
+    walls.push_back(firstWall);
 }
 
 void Game::moveBird(float timedelta)
@@ -71,6 +77,7 @@ void Game::handleCollisions()
 
         if(birdIntRect.intersects(lowerIntRect) || birdIntRect.intersects(upperIntRect))
         {
+            restart();
         }
 
         else if(mBird.getPosition().y + mBird.getSize().y <= 0 &&
@@ -78,6 +85,7 @@ void Game::handleCollisions()
                 mBird.getPosition().x + mBird.getSize().x < (*it).getPosition().x
                 + (*it).getWidth())
         {
+            restart();
         }
     }
 

@@ -12,6 +12,7 @@ class Game
         Game();
         void run();
     private:
+        void restart();
         void moveBird(float timedelta);
         void moveWalls(float timedelta);
         void handleInput();
