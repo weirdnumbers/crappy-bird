@@ -10,7 +10,7 @@ class Bird : public sf::Drawable, public sf::Transformable
         Bird();
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         sf::Vector2f getSize();
-        sf::IntRect getIntRect();
+        sf::IntRect getIntRect(const sf::Vector2f& position);
     private:
         sf::RectangleShape mShape;
 };

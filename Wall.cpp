@@ -31,14 +31,13 @@ int Wall::getWidth()
     return wallWidth;
 }
 
-sf::IntRect Wall::getLowerIntRect()
+sf::IntRect Wall::getLowerIntRect(const sf::Vector2f& position)
 {
-    return sf::IntRect(wallLower.getPosition().x, wallLower.getPosition().y,
+    return sf::IntRect(position.x, position.y + wallUpper.getSize().y + gapHeight,
             wallLower.getSize().x, wallLower.getSize().y);
 }
 
-sf::IntRect Wall::getUpperIntRect()
+sf::IntRect Wall::getUpperIntRect(const sf::Vector2f& position)
 {
-    return sf::IntRect(wallUpper.getPosition().x, wallUpper.getPosition().y,
-            wallUpper.getSize().x, wallUpper.getSize().y);
+    return sf::IntRect(position.x, position.y, wallUpper.getSize().x, wallUpper.getSize().y);
 }

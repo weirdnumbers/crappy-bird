@@ -11,8 +11,8 @@ class Wall : public sf::Drawable, public sf::Transformable
         ~Wall();
         void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         int getWidth();
-        sf::IntRect getLowerIntRect();
-        sf::IntRect getUpperIntRect();
+        sf::IntRect getLowerIntRect(const sf::Vector2f& position);
+        sf::IntRect getUpperIntRect(const sf::Vector2f& position);
     private:
         int gapHeight;
         int wallWidth;

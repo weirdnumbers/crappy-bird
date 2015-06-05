@@ -63,12 +63,26 @@ void Game::handleInput()
 
 void Game::handleCollisions()
 {
+    for(std::deque<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
+    {
+        sf::IntRect lowerIntRect = (*it).getLowerIntRect((*it).getPosition());
+        sf::IntRect upperIntRect = (*it).getUpperIntRect((*it).getPosition());
+        sf::IntRect birdIntRect = mBird.getIntRect(mBird.getPosition());
+
+        if(birdIntRect.intersects(lowerIntRect) || birdIntRect.intersects(upperIntRect))
+        {
+            std::cout << "!!!" << std::endl;
+        }
+    }
 
 }
 
 void Game::checkBirdBounds()
 {
-
+    if(mBird.getPosition().y + mBird.getSize().y >= Screen::Height)
+    {
+        mBird.setPosition(mBird.getPosition().x, Screen::Height - mBird.getSize().y);
+    }
 }
 
 void Game::processEvents()
@@ -118,6 +132,7 @@ void Game::update(sf::Time elapsedTime)
 
     moveBird(timedelta);
     moveWalls(timedelta);
+    checkBirdBounds();
     handleCollisions();
 }
 
