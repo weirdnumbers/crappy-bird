@@ -7,8 +7,9 @@
 Wall::Wall()
 {
     gapHeight = 150;
+    minHeight = 20;
     wallWidth = 70;
-    wallLower.setSize(sf::Vector2f(wallWidth, rand() % (Screen::Height - gapHeight)));
+    wallLower.setSize(sf::Vector2f(wallWidth, minHeight + rand() % (Screen::Height - minHeight - gapHeight)));
     wallUpper.setSize(sf::Vector2f(wallWidth, Screen::Height - (wallLower.getSize().y + gapHeight)));
     wallLower.setPosition(0, Screen::Height - wallLower.getSize().y);
     wallUpper.setPosition(0, 0);

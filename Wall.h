@@ -16,6 +16,7 @@ class Wall : public sf::Drawable, public sf::Transformable
     private:
         int gapHeight;
         int wallWidth;
+        int minHeight;
 
         sf::RectangleShape wallLower;
         sf::RectangleShape wallUpper;
