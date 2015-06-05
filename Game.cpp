@@ -9,7 +9,6 @@
 Game::Game()
     : mWindow(sf::VideoMode(Screen::Width, Screen::Height), "Crappy Bird", sf::Style::Close)
 {
-    mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
     wallDistance = 220;
     jumpVelocity = - 550;
     gravity = 2000;
@@ -18,6 +17,7 @@ Game::Game()
     wasPressed = false;
     isPressed = false;
 
+    mBird.setPosition(0.15 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
     Wall firstWall;
     firstWall.setPosition(Screen::Width, 0);
     walls.push_back(firstWall);
@@ -71,7 +71,13 @@ void Game::handleCollisions()
 
         if(birdIntRect.intersects(lowerIntRect) || birdIntRect.intersects(upperIntRect))
         {
-            std::cout << "!!!" << std::endl;
+        }
+
+        else if(mBird.getPosition().y + mBird.getSize().y <= 0 &&
+                mBird.getPosition().x > (*it).getPosition().x &&
+                mBird.getPosition().x + mBird.getSize().x < (*it).getPosition().x
+                + (*it).getWidth())
+        {
         }
     }
 
