@@ -16,10 +16,6 @@ Wall::Wall()
     wallUpper.setPosition(0, 0);
 }
 
-Wall::~Wall()
-{
-}
-
 void Wall::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();

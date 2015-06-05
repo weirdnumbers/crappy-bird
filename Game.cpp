@@ -16,6 +16,7 @@ Game::Game()
     wallSpeed = - 180;
     wasPressed = false;
     isPressed = false;
+    firstKeypress = false;
 
     restart();
 }
@@ -38,9 +39,10 @@ void Game::run()
 void Game::restart()
 {
     mBird.setPosition(0.2 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
+    firstKeypress = false;
     walls.clear();
     Wall firstWall;
-    firstWall.setPosition(Screen::Width, 0);
+    firstWall.setPosition(1.5 * Screen::Width, 0);
     walls.push_back(firstWall);
 }
 
@@ -60,6 +62,7 @@ void Game::handleInput()
     {
         birdVelocity = jumpVelocity;
         wasPressed = true;
+        firstKeypress = true;
     }
     else if(!isPressed && wasPressed)
     {
@@ -95,7 +98,8 @@ void Game::checkBirdBounds()
 {
     if(mBird.getPosition().y + mBird.getSize().y >= Screen::Height)
     {
-        mBird.setPosition(mBird.getPosition().x, Screen::Height - mBird.getSize().y);
+        //mBird.setPosition(mBird.getPosition().x, Screen::Height - mBird.getSize().y);
+        restart();
     }
 }
 
@@ -144,10 +148,13 @@ void Game::update(sf::Time elapsedTime)
 {
     float timedelta = elapsedTime.asSeconds();
 
-    moveBird(timedelta);
-    moveWalls(timedelta);
-    checkBirdBounds();
-    handleCollisions();
+    if(firstKeypress)
+    {
+        moveBird(timedelta);
+        moveWalls(timedelta);
+        checkBirdBounds();
+        handleCollisions();
+    }
 }
 
 void Game::render()

@@ -33,6 +33,7 @@ class Game
         float birdVelocity;
         bool wasPressed;
         bool isPressed;
+        bool firstKeypress;
 };
 
 #endif // GAME_H
