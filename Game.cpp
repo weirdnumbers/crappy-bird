@@ -10,7 +10,7 @@ Game::Game()
     : mWindow(sf::VideoMode(Screen::Width, Screen::Height), "Crappy Bird", sf::Style::Close)
 {
     wallDistance = 220;
-    jumpVelocity = - 550;
+    jumpVelocity = - 600;
     gravity = 2000;
     birdVelocity = 0.f;
     wallSpeed = - 180;
@@ -81,8 +81,8 @@ void Game::handleCollisions()
         }
 
         else if(mBird.getPosition().y + mBird.getSize().y <= 0 &&
-                mBird.getPosition().x > (*it).getPosition().x &&
-                mBird.getPosition().x + mBird.getSize().x < (*it).getPosition().x
+                mBird.getPosition().x + mBird.getSize().x > (*it).getPosition().x &&
+                mBird.getPosition().x < (*it).getPosition().x
                 + (*it).getWidth())
         {
             restart();
