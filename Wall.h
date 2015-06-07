@@ -13,6 +13,8 @@ class Wall : public sf::Drawable, public sf::Transformable
         int getWidth();
         sf::IntRect getLowerIntRect(const sf::Vector2f& position);
         sf::IntRect getUpperIntRect(const sf::Vector2f& position);
+        sf::RectangleShape& getLowerWall();
+        sf::RectangleShape& getUpperWall();
     private:
         int gapHeight;
         int wallWidth;

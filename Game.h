@@ -5,7 +5,7 @@
 #include <deque>
 #include "Bird.h"
 #include "Wall.h"
-#include "texture_manager.hpp"
+#include "Texture_manager.h"
 
 class Game
 {
@@ -23,6 +23,7 @@ class Game
         void update(sf::Time elapsedTime);
         void render();
         void loadTextures();
+        void setTextures(sf::Shape& shape, std::string name);
 
         TextureManager textureManager;
         sf::RenderWindow mWindow;

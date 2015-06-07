@@ -17,6 +17,7 @@ Game::Game()
     wasPressed = false;
     isPressed = false;
     paused = true;
+    loadTextures();
 
     restart();
 }
@@ -42,6 +43,8 @@ void Game::restart()
     paused = true;
     walls.clear();
     Wall newWall;
+    setTextures(newWall.getLowerWall(), "wall");
+    setTextures(newWall.getUpperWall(), "wall");
     newWall.setPosition(1.5 * Screen::Width, 0);
     walls.push_back(newWall);
 }
@@ -49,6 +52,11 @@ void Game::restart()
 void Game::loadTextures()
 {
     textureManager.loadTexture("wall", "textures/brick.png");
+}
+
+void Game::setTextures(sf::Shape& shape, std::string name)
+{
+    shape.setTexture(&textureManager.getRef(name));
 }
 
 void Game::moveBird(float timedelta)
@@ -103,7 +111,6 @@ void Game::checkBirdBounds()
 {
     if(mBird.getPosition().y + mBird.getSize().y >= Screen::Height)
     {
-        //mBird.setPosition(mBird.getPosition().x, Screen::Height - mBird.getSize().y);
         restart();
     }
 }
@@ -137,6 +144,8 @@ void Game::moveWalls(float timedelta)
             {
                 Wall wall;
                 wall.setPosition(Screen::Width, 0);
+                setTextures(wall.getLowerWall(), "wall");
+                setTextures(wall.getUpperWall(), "wall");
                 walls.push_back(wall);
                 break;
             }
