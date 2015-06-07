@@ -14,6 +14,9 @@ Wall::Wall()
     wallUpper.setSize(sf::Vector2f(wallWidth, Screen::Height - gapHeight - wallLower.getSize().y));
     wallLower.setPosition(0, Screen::Height - wallLower.getSize().y);
     wallUpper.setPosition(0, 0);
+
+    wallLower.setFillColor(sf::Color::Green);
+    wallUpper.setFillColor(sf::Color::Green);
 }
 
 void Wall::draw(sf::RenderTarget& target, sf::RenderStates states) const

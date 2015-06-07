@@ -16,7 +16,7 @@ Game::Game()
     wallSpeed = - 180;
     wasPressed = false;
     isPressed = false;
-    firstKeypress = false;
+    paused = true;
 
     restart();
 }
@@ -39,11 +39,16 @@ void Game::run()
 void Game::restart()
 {
     mBird.setPosition(0.2 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
-    firstKeypress = false;
+    paused = true;
     walls.clear();
-    Wall firstWall;
-    firstWall.setPosition(1.5 * Screen::Width, 0);
-    walls.push_back(firstWall);
+    Wall newWall;
+    newWall.setPosition(1.5 * Screen::Width, 0);
+    walls.push_back(newWall);
+}
+
+void Game::loadTextures()
+{
+    textureManager.loadTexture("wall", "textures/brick.png");
 }
 
 void Game::moveBird(float timedelta)
@@ -62,7 +67,7 @@ void Game::handleInput()
     {
         birdVelocity = jumpVelocity;
         wasPressed = true;
-        firstKeypress = true;
+        paused = false;
     }
     else if(!isPressed && wasPressed)
     {
@@ -148,7 +153,7 @@ void Game::update(sf::Time elapsedTime)
 {
     float timedelta = elapsedTime.asSeconds();
 
-    if(firstKeypress)
+    if(!paused)
     {
         moveBird(timedelta);
         moveWalls(timedelta);
@@ -159,7 +164,7 @@ void Game::update(sf::Time elapsedTime)
 
 void Game::render()
 {
-    mWindow.clear();
+    mWindow.clear(sf::Color(0, 150, 255));
 
     for(std::deque<Wall>::iterator it = walls.begin(); it != walls.end(); ++it)
     {

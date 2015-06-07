@@ -5,6 +5,7 @@
 #include <deque>
 #include "Bird.h"
 #include "Wall.h"
+#include "texture_manager.hpp"
 
 class Game
 {
@@ -21,7 +22,9 @@ class Game
         void processEvents();
         void update(sf::Time elapsedTime);
         void render();
+        void loadTextures();
 
+        TextureManager textureManager;
         sf::RenderWindow mWindow;
         Bird mBird;
         std::deque<Wall> walls;
@@ -33,7 +36,7 @@ class Game
         float birdVelocity;
         bool wasPressed;
         bool isPressed;
-        bool firstKeypress;
+        bool paused;
 };
 
 #endif // GAME_H

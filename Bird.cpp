@@ -5,7 +5,7 @@
 Bird::Bird()
 {
     mShape.setSize(sf::Vector2f(40, 40));
-    mShape.setFillColor(sf::Color(250, 0, 0));
+    mShape.setFillColor(sf::Color(255, 255, 255));
 }
 
 void Bird::draw(sf::RenderTarget& target, sf::RenderStates states) const
