@@ -23,6 +23,7 @@ class Game
         void update(sf::Time elapsedTime);
         void render();
         void loadTextures();
+        void loadWallTextures(Wall& wall);
         void setTextures(sf::Shape& shape, std::string name);
 
         TextureManager textureManager;

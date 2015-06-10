@@ -39,12 +39,12 @@ void Game::run()
 
 void Game::restart()
 {
+    mWindow.setVerticalSyncEnabled(true);
     mBird.setPosition(0.2 * Screen::Width, (Screen::Height - mBird.getSize().y)/ 2);
     paused = true;
     walls.clear();
     Wall newWall;
-    setTextures(newWall.getLowerWall(), "wall");
-    setTextures(newWall.getUpperWall(), "wall");
+    loadWallTextures(newWall);
     newWall.setPosition(1.5 * Screen::Width, 0);
     walls.push_back(newWall);
 }
@@ -52,6 +52,14 @@ void Game::restart()
 void Game::loadTextures()
 {
     textureManager.loadTexture("wall", "textures/brick.png");
+}
+
+void Game::loadWallTextures(Wall& wall)
+{
+    //setTextures(wall.getLowerWall(), "wall");
+    //setTextures(wall.getUpperWall(), "wall");
+    wall.getLowerWall().setFillColor(sf::Color::Green);
+    wall.getUpperWall().setFillColor(sf::Color::Green);
 }
 
 void Game::setTextures(sf::Shape& shape, std::string name)
@@ -144,8 +152,7 @@ void Game::moveWalls(float timedelta)
             {
                 Wall wall;
                 wall.setPosition(Screen::Width, 0);
-                setTextures(wall.getLowerWall(), "wall");
-                setTextures(wall.getUpperWall(), "wall");
+                loadWallTextures(wall);
                 walls.push_back(wall);
                 break;
             }
